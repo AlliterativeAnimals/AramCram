@@ -2,7 +2,7 @@ angular.module("starter.services.champion", [])
 
     .factory(
         "Champion",
-        function($http, $q, Cache, DDragon) {
+        function($http, $q, Cache, DDragon, ImageCache) {
 
             var Champion = { // K5
                 list: function() {
@@ -78,9 +78,15 @@ angular.module("starter.services.champion", [])
                     ]).then(function(result) {
                         var version = result[0],
                             cdn = result[1],
-                            champion = result[2];
+                            champion = result[2],
+                            built = cdn + "/" + version + "/img/champion/" + champion.image.full;
 
-                        deferred.resolve(cdn + "/" + version + "/img/champion/" + champion.image.full);
+                        ImageCache.get(built).then(function(result) {
+                            deferred.resolve(result);
+                        }, function(reason) {
+                            console.error(reason);
+                            deferred.resolve(built);
+                        });
 
                     }, deferred.reject);
 
@@ -96,14 +102,25 @@ angular.module("starter.services.champion", [])
                     ]).then(function(result) {
                         var version = result[0],
                             cdn = result[1],
-                            champion = result[2];
+                            champion = result[2],
+                            built = cdn + "/" + version + "/img/sprite/" + champion.image.sprite;
 
-                        deferred.resolve({
-                            image: cdn + "/" + version + "/img/sprite/" + champion.image.sprite,
-                            w: champion.image.w,
-                            h: champion.image.h,
-                            x: champion.image.x,
-                            y: champion.image.y
+                        ImageCache.get(built).then(function(result) {
+                            deferred.resolve({
+                                image: result,
+                                w: champion.image.w,
+                                h: champion.image.h,
+                                x: champion.image.x,
+                                y: champion.image.y
+                            });
+                        }, function(reason) {
+                            deferred.resolve({
+                                image: built,
+                                w: champion.image.w,
+                                h: champion.image.h,
+                                x: champion.image.x,
+                                y: champion.image.y
+                            });
                         });
 
                     }, deferred.reject);
@@ -111,10 +128,18 @@ angular.module("starter.services.champion", [])
                     return deferred.promise;
                 },
                 getImageSplash: function(name, number) {
-                    var deferred = $q.defer();
+                    var deferred = $q.defer(),
+                        built = null;
 
                     DDragon.getCDN().then(function(cdn) {
-                        deferred.resolve(cdn + "/img/champion/splash/" + name + "_" + number + ".jpg");
+                        built = cdn + "/img/champion/splash/" + name + "_" + number + ".jpg";
+                        ImageCache.get(built).then(function (result) {
+                            deferred.resolve(result);
+                        }, function(reason) {
+                            console.error(reason);
+                            deferred.resolve(built);
+                        });
+
                     }, deferred.reject);
 
                     return deferred.promse;

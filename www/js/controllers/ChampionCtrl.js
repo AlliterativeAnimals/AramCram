@@ -44,7 +44,12 @@ angular.module('starter.controllers.championctrl', ['starter.services'])
             });
 
             spell.vars.forEach(function(variable) {
-                description = replaceAll(description, "{{ " + variable.key + " }}", variable.coeff);
+                var search = "{{ " + variable.key + "}}",
+                    replace = variable.coeff;
+                if (replace + "" === "0") {
+                    replace = "";
+                }
+                description = replaceAll(description, search, replace);
             });
 
             if (regex.test(description)) {
@@ -55,7 +60,7 @@ angular.module('starter.controllers.championctrl', ['starter.services'])
                 });
             }
 
-            description = description.replace(/[^ ><]*~\?~[^ ><]*/g, "?");
+            description = description.replace(/[^ ><]*~\?~[^ ><]*/g, "");
 
             return $sce.trustAsHtml(description);
         }
