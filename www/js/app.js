@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $q, Champion) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,6 +16,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+    if (navigator.splashscreen) {
+
+        var imagePromises = [];
+
+        Champion.list().then(function(championList) {
+            Object.keys(championList).forEach(function(key) {
+                imagePromises.push(Champion.getImageThumb(key));
+                imagePromises.push(Champion.getImageSprite(key));
+            });
+
+            $q.all(imagePromises).finally(function() {
+                navigator.splashscreen.hide();
+            });
+        })
     }
   });
 })
