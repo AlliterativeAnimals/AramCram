@@ -47,7 +47,8 @@ angular.module('starter.controllers.championctrl', ['starter.services'])
             "@special.jaxrmr": "",
             "bonusarmor": " Bonus Armor",
             "@special.nautilusq": "",
-            "bonushealth": " Bonus Health"
+            "bonushealth": " Bonus Health",
+            "armor": " Armor"
         };
 
         var noFormatNumber = [
