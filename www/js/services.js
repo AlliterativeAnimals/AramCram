@@ -1,0 +1,10 @@
+angular.module(
+    "starter.services",
+    [
+        "starter.services.cache",
+        "starter.services.champion",
+        "starter.services.ddragon",
+        "starter.services.preferences",
+        "starter.services.imagecache",
+    ]
+);
