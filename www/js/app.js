@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives'])
 
-.run(function($ionicPlatform, $q, Champion) {
+.run(function($ionicPlatform, $q, Champion, $ionicLoading) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,24 +18,40 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
     if (navigator.splashscreen) {
+        navigator.splashscreen.hide();
 
-        var imagePromises = [];
-
-        Champion.list().then(function(championList) {
-            Object.keys(championList).forEach(function(key) {
-                imagePromises.push(Champion.getImageThumb(key));
-                imagePromises.push(Champion.getImageSprite(key));
-            });
-
-            $q.all(imagePromises).finally(function() {
-                navigator.splashscreen.hide();
-            });
-        })
+        // var imagePromises = [],
+        //     donePromises = 0;
+        //
+        // function updateLoadingTemplate() {
+        //     $ionicLoading.show({
+        //         template: '<i class="ion-loading-d"></i><br />Fetching champion details...<br />' + donePromises + '/' + imagePromises.length
+        //     });
+        // }
+        //
+        // Champion.list().then(function(championList) {
+        //     Object.keys(championList).forEach(function(key) {
+        //         imagePromises.push(Champion.getImageThumb(key));
+        //         imagePromises.push(Champion.getImageSprite(key));
+        //     });
+        //
+        //     imagePromises.forEach(function(imagePromise) {
+        //         imagePromise.finally(function() {
+        //             donePromises += 1;
+        //             updateLoadingTemplate();
+        //         });
+        //     });
+        //
+        //     $q.all(imagePromises).finally(function() {
+        //         navigator.splashscreen.hide();
+        //         $ionicLoading.hide();
+        //     });
+        // })
     }
   });
 })
 
 .config(function($urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/first_letter');
+  $urlRouterProvider.otherwise('/startup');
 });

@@ -17,8 +17,10 @@ angular.module("starter.services.imagecache", [ "starter.services.cache" ])
                             fileTransfer = null;
 
                         if (Cache.get(url)) {
+                            console.log("Found cached");
                             deferred.resolve(Cache.get(url));
                         } else if (window.FileTransfer) {
+                            console.log("Started file transfer");
                             fileTransfer = new FileTransfer();
                             fileTransfer.download(
                                 encodeURI(url),
@@ -39,6 +41,7 @@ angular.module("starter.services.imagecache", [ "starter.services.cache" ])
                             });
 
                         } else {
+                            console.warn("NO FILE TRANSFER AVAILABLE");
                             deferred.resolve(url);
                         }
 

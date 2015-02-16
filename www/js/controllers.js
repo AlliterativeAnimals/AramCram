@@ -6,6 +6,7 @@ angular.module(
         'starter.controllers.championctrl',
         'starter.controllers.listallctrl',
         'starter.controllers.listfirstletterctrl',
-        'starter.controllers.pickbyletter'
+        'starter.controllers.pickbyletter',
+        'starter.controllers.startupctrl'
     ]
 );
