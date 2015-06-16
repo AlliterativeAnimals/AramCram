@@ -79,3 +79,32 @@ h2 {
   background: url(../img/Default-Portrait~ipad.png);
   background-size: cover;
   background-position: center; }
+
+.list .item {
+  color: white;
+  background: #091324;
+  border-color: #070f1c; }
+  .list .item a {
+    background: inherit; }
+  .list .item h1, .list .item h2 {
+    color: white; }
+  .list .item p {
+    color: #AAA; }
+
+.list.card .item {
+  border-color: #132a4d; }
+
+.list.card {
+  background: #091324; }
+
+ion-content, ion-nav-bar, ion-side-menu {
+  background: black;
+  color: white; }
+  ion-content.bar.bar-stable, ion-content .bar.bar-stable, ion-nav-bar.bar.bar-stable, ion-nav-bar .bar.bar-stable, ion-side-menu.bar.bar-stable, ion-side-menu .bar.bar-stable {
+    background: #0d1d34;
+    color: white;
+    border-color: #17335d; }
+    ion-content.bar.bar-stable h1.title, ion-content .bar.bar-stable h1.title, ion-nav-bar.bar.bar-stable h1.title, ion-nav-bar .bar.bar-stable h1.title, ion-side-menu.bar.bar-stable h1.title, ion-side-menu .bar.bar-stable h1.title {
+      color: white; }
+    ion-content.bar.bar-stable .button, ion-content.bar.bar-stable button, ion-content.bar.bar-stable ion-nav-back-button i, ion-content .bar.bar-stable .button, ion-content .bar.bar-stable button, ion-content .bar.bar-stable ion-nav-back-button i, ion-nav-bar.bar.bar-stable .button, ion-nav-bar.bar.bar-stable button, ion-nav-bar.bar.bar-stable ion-nav-back-button i, ion-nav-bar .bar.bar-stable .button, ion-nav-bar .bar.bar-stable button, ion-nav-bar .bar.bar-stable ion-nav-back-button i, ion-side-menu.bar.bar-stable .button, ion-side-menu.bar.bar-stable button, ion-side-menu.bar.bar-stable ion-nav-back-button i, ion-side-menu .bar.bar-stable .button, ion-side-menu .bar.bar-stable button, ion-side-menu .bar.bar-stable ion-nav-back-button i {
+      color: white; }

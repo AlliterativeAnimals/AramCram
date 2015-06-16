@@ -1,0 +1,9 @@
+nginx:
+    image: gleclaire/ionic-framework
+    ports:
+        - "8164:8164"
+        - "35764:35764"
+    volumes:
+        - .:/myApp
+    working_dir: /myApp
+    command: ionic serve --all --port 8164 --livereload-port 35764

@@ -65,3 +65,50 @@ h2 {
     background-size: cover;
     background-position: center;
 }
+
+$background: lighten(#070f1c, 2);
+$headerBackground: lighten($background, 4);
+
+.list .item {
+    color: white;
+    background: $background;
+    border-color: darken($background, 2);
+
+    a {
+        background: inherit;
+    }
+
+    h1, h2 {
+        color: white;
+    }
+    
+    p {
+        color: #AAA;
+    }
+}
+
+.list.card .item {
+    border-color: lighten($background, 10);
+}
+
+.list.card {
+    background: $background;
+}
+
+ion-content, ion-nav-bar, ion-side-menu {
+    &.bar.bar-stable, .bar.bar-stable {
+        background: $headerBackground;
+        color: white;
+        border-color: lighten($headerBackground, 10);
+        
+        h1.title {
+            color: white;
+        }
+
+        .button, button, ion-nav-back-button i {
+            color: white;
+        }
+    }
+    background: black;
+    color: white;
+}
